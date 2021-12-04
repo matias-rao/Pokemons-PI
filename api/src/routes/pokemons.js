@@ -44,12 +44,27 @@ router.get("/", async (req, res, next) => {
       Promise.all([pokemonApi, pokemonDb]).then(async (respuesta) => {
         const [pokeApi, pokeDb] = respuesta;
         // console.log(pokeApi);
+
+        let pokemonsNext = pokeApi.data.next
+        // console.log(pokemonsNext)
+        let pokemonsNextData = await axios.get(pokemonsNext)
+        // console.log(pokemonsNextData.data)
+        let filteredPokemonsNext = pokemonsNextData.data.results.map((pokemon) => {
+          return {
+            name: pokemon.name,
+            url: pokemon.url,
+          };
+        });
+
         let filteredPokemons = pokeApi.data.results.map((pokemon) => {
           return {
             name: pokemon.name,
             url: pokemon.url,
           };
         });
+
+        filteredPokemons = [...filteredPokemons, ...filteredPokemonsNext]
+
         const pokemonitosData = await Promise.all(
           filteredPokemons.map(async (c) => {
             const pokemonData = await axios.get(c.url);
@@ -57,6 +72,7 @@ router.get("/", async (req, res, next) => {
             return {
               name: pokemonData.data.name,
               img: pokemonData.data.sprites.front_default,
+              attack: pokemonData.data.stats[1].base_stat,
               types: pokemonData.data.types.map((t) => {
                 return t.type.name + " ";
               }),

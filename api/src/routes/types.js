@@ -17,10 +17,12 @@ router.get('/', async (req, res, next) =>{
             })
             // console.log(filterTypeApi)
             pokemonsTypes = await Promise.all(filterTypeApi.map((c) => {return Type.create({name: c})}))
-            console.log(pokemonsTypes)
+          
+            res.send(pokemonsTypes)
+        }else{
+            res.send(typeDb)
         }
 
-        res.send(pokemonsTypes)
     } catch (error) {
         next(error)
     }
