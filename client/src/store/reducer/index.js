@@ -1,4 +1,4 @@
-import { FETCH_POKEMONS, FETCH_TYPES, SEARCH_POKEMONS, SORT, SORT_ATTACK, FILTER_TYPES } from "../actions";
+import { FETCH_POKEMONS, FETCH_TYPES, SEARCH_POKEMONS, SORT, SORT_ATTACK, FILTER_TYPES, FILTER_CREATED, POST_POKEMON } from "../actions";
 import { ASCENDENTE, DEBIL } from "../../constantes/sort";
 
 const initialState = {
@@ -64,12 +64,26 @@ export default function reducer(state = initialState, action) {
     case FILTER_TYPES:
       let filteredTypes = [...state.pokemons]
 
+     
       filteredTypes = filteredTypes.filter((t) => t.types.find((elem) => elem === action.payload + " "))
 
       return {
         ...state,
-        filteredPokemons: filteredTypes
+        // filteredPokemons: filteredTypes
+        filteredPokemons: action.payload === 'TiposPokemon' ? state.pokemons : filteredTypes
       };
+    case FILTER_CREATED:
+      let allPokemons = state.pokemons
+      let createdPokemons = action.payload === 'PokemonsCreados' ? allPokemons.filter(p => p.createdInDB) : allPokemons.filter(p => !p.createdInDB)
+
+      return{
+        ...state, 
+        filteredPokemons: action.payload === 'Pokemons' ? state.pokemons : createdPokemons
+      }
+    case POST_POKEMON:
+      return{
+        ...state
+      }
     default:
       return state;
   }

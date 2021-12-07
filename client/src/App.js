@@ -5,17 +5,22 @@ import SearchBar from "./components/searchBar";
 import FilterTypes from "./components/filterTypes"
 import Order from "./components/order";
 import { Routes, Route } from "react-router-dom";
+import LandingPage from "./components/landingPage";
+import PokemonCreate from "./components/pokemonCreate";
 
 function App() {
   return (
     <div className="App">
       <h1>Henry Pokemon</h1>
       <SearchBar />
-      <Order/>
-      <FilterTypes/>
+      <Order />
+      <FilterTypes />
+      
       <Routes>
-        <Route path="/" element={<Pokemons />}/>
-        <Route path="/:id" element={<PokemonDetail/>}/>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/Home" element={<Pokemons /> } />
+        <Route path="/:id" element={<PokemonDetail />} />
+        <Route path= '/Create' element={< PokemonCreate/>}   />
       </Routes>
     </div>
   );

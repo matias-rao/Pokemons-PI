@@ -5,6 +5,8 @@ export const SORT_ATTACK= 'SORT_ATTACK'
 export const SEARCH_POKEMON_ID = 'SEARCH_POKEMON_ID'
 export const FILTER_TYPES = 'FILTER_TYPES'
 export const FETCH_TYPES = 'FETCH_TYPES'
+export const FILTER_CREATED = 'FILTER_CREATED'
+export const POST_POKEMON = 'POST_POKEMON'
 
 const axios = require("axios");
 
@@ -71,5 +73,26 @@ export function filterTypes(order){
     return{
         type: FILTER_TYPES,
         payload: order
+    }
+}
+
+
+export function filterCreated(order){
+    return {
+        type: FILTER_CREATED,
+        payload: order
+    }
+}
+
+export function postPokemon(payload){
+    return async function(dispatch){
+        const response = await axios.post('http://localhost:3001/api/pokemons', payload)
+        .then((pokemons) =>{
+            dispatch({
+                type: POST_POKEMON,
+                payload: pokemons
+            })
+        })
+        return response
     }
 }

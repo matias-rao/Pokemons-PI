@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
     img: {
       type:  DataTypes.STRING,
       allowNull: false,
-    }
+    },
     // hp: {
     //   type: DataTypes.INTEGER,
     //   allowNull: false,
@@ -42,5 +42,10 @@ module.exports = (sequelize) => {
     //   type: DataTypes.INTEGER,
     //   allowNull: false,
     // },
+    createdInDB: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }
   });
 };
