@@ -18,6 +18,7 @@ export default function Order() {
 
   return (
     <div>
+      <p>Ordenar por: </p>
       <select name="select" onChange={onChange}>
         <option value='Orden Alfabetico'
           label={'Orden Alfabetico'} />

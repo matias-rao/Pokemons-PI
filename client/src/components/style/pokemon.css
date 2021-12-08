@@ -1,0 +1,22 @@
+
+
+.card{
+    border: grey solid 1px;
+    width: 300px;
+    margin: 25px;
+    border-radius: 7px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+}
+
+.imgPoke{
+    /* margin-top: -20px; */
+    overflow: hidden;
+    max-width:80%;
+    max-height:80%;
+}
+
+.pokeAttack{
+    display: none;
+}

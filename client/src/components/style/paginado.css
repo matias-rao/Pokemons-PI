@@ -1,0 +1,21 @@
+.paginado{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.number{
+    /* text-decoration: none; */
+    margin: 5px;
+    height: 25px;
+    width: 20px;
+    /* padding: 0px 2px; */
+    list-style: none;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.numberA{
+    text-decoration: none;
+}

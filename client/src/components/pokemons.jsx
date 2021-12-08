@@ -5,6 +5,9 @@ import Pokemon from "./pokemon";
 import React from "react";
 import './style/pokemons.css'
 import Paginado from "./paginado";
+import SearchBar from './searchBar'
+import FilterTypes from "./filterTypes"
+import Order from "./order";
 
 
 export default function Pokemons() {
@@ -28,14 +31,23 @@ export default function Pokemons() {
 
   return (
     <div className='asd'>
-      <Paginado
-        pokemonsPorPagina={pokemonsPorPagina}
-        pokemons={pokemons.length}
-        paginado={paginado}
-      />
+      <div className='search'>
+        <FilterTypes />
+        <Order />
+        <SearchBar />
+      </div>
+      <div className='paginado'>
+        <Paginado
+          pokemonsPorPagina={pokemonsPorPagina}
+          pokemons={pokemons.length}
+          paginado={paginado}
+        />
+      </div>
+      <div className='conteinerPokemonitos'>
       {pokemonsActuales && pokemonsActuales.map((pokemon) => {
-        return <Pokemon name={pokemon.name} image={pokemon.img} key={pokemon.id} attack={pokemon.attack} types={pokemon.types} />;
+        return <Pokemon name={pokemon.name} image={pokemon.img} id={pokemon.id} attack={pokemon.attack} types={pokemon.types} />;
       })}
+      </div>
     </div>
   );
 }

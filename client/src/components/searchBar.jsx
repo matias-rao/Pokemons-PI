@@ -19,6 +19,7 @@ export default function SearchBar() {
 
   return (
     <div>
+      <p>Buscar Pokemon: </p>
       <form onSubmit={onSubmit}>
         <input type="text" onChange={handleOnChange} value={search} />
         <input type="submit" value="Buscar" />
