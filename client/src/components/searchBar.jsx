@@ -16,7 +16,7 @@ export default function SearchBar() {
     e.preventDefault();
     setSearch(e.target.value);
   }
-
+  
   return (
     <div>
       <p>Buscar Pokemon: </p>

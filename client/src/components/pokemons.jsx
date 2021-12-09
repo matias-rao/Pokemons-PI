@@ -27,8 +27,9 @@ export default function Pokemons() {
 
   useEffect(() => {
     dispatch(fetchPokemons());
+    // setPaginaActual(1)
   }, []);
-
+  // console.log(pokemons)
   return (
     <div className='asd'>
       <div className='search'>

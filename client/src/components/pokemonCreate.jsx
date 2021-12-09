@@ -77,7 +77,6 @@ export default function PokemonCreate() {
     function handleSubmit(e) {
         e.preventDefault(e)
         dispatch(postPokemon(input))
-        alert("Pokemonito creado!")
         setInput({
             name: '',
             hp: '',

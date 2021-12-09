@@ -20,9 +20,13 @@ router.get("/", async (req, res, next) => {
           where: { name: name },
         });
         // Me fijo si el nombre pasado por query existe en mi DB
-        pokemonDb.types = pokemonDb.types.map((t) => t.name)
+
+        // console.log(pokemonDb)          
         if (pokemonDb) {
-          res.send(pokemonDb);
+          pokemonDb.dataValues.types = pokemonDb.dataValues.types.map((t) => t.name)
+          console.log(pokemonDb)
+          // return res.send(pokemonDb.dataValues)
+          return res.send(pokemonDb.dataValues)
         } else {
           // Sino lo busco en la PokeApi
           pokemonApi = await axios.get(
@@ -31,7 +35,6 @@ router.get("/", async (req, res, next) => {
           let pokemon = {
             name: pokemonApi.data.name,
             id: pokemonApi.data.id,
-            // img: pokemonApi.data.sprites.front_default,
             img: pokemonApi.data.sprites.other.dream_world.front_default,
             types: pokemonApi.data.types.map((t) => {
               return " " + t.type.name + " ";
@@ -50,10 +53,10 @@ router.get("/", async (req, res, next) => {
 
       Promise.all([pokemonApi, pokemonDb]).then(async (respuesta) => {
         const [pokeApi, pokeDb] = respuesta;
-        
-        let pokeDbFilter = pokeDb.map((t) => {return {name: t.name, id: t.id, img: t.img, hp: t.hp, attack: t.attack, defense: t.defense, speed: t.speed, height: t.height, weight: t.weight, types: t.types.map((p) => p.name)}});
+
+        let pokeDbFilter = pokeDb.map((t) => { return { name: t.name, id: t.id, img: t.img, hp: t.hp, attack: t.attack, defense: t.defense, speed: t.speed, height: t.height, weight: t.weight, types: t.types.map((p) => p.name + " "), createdInDB: t.createdInDB  } });
         // console.log(pokeDbFilter)
-        
+
         let pokemonsNext = pokeApi.data.next
         // console.log(pokemonsNext)
         let pokemonsNextData = await axios.get(pokemonsNext)
@@ -104,7 +107,7 @@ router.get("/:idPokemon", async (req, res, next) => {
     const { idPokemon } = req.params;
     let pokemon;
     if (typeof idPokemon === "string" && idPokemon.length > 8) {
-      pokemon = await Pokemon.findByPk(idPokemon, {include: Type});
+      pokemon = await Pokemon.findByPk(idPokemon, { include: Type });
       pokemon.types = pokemon.types.map((t) => t.name)
       console.log(pokemon)
       res.send(pokemon);
@@ -124,17 +127,17 @@ router.post("/", async (req, res, next) => {
   try {
     const { name, img, hp, attack, defense, speed, height, weight, types } = req.body;
     let newPokemon = await Pokemon.create({ name, img, hp, attack, defense, speed, height, weight });
-    
+
     let typesDb = await Type.findAll({
-      where: {name: types},
+      where: { name: types },
       raw: true
     })
-    let typesDbb = typesDb.map(e => {return e.id})
+    let typesDbb = typesDb.map(e => { return e.id })
     // let asd = typesDb.map(e => {return e.name})
     newPokemon.addType(typesDbb)
     // console.log(typesDb)
     // console.log(newPokemon)
-     
+
     res.send(newPokemon);
   } catch (error) {
     next(error);

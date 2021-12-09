@@ -1,0 +1,34 @@
+.landing{
+    height: 100vh;
+    background-image: url('https://images3.alphacoders.com/273/thumb-1920-273289.jpg');
+    background: url(./image/fondoL.jpg) no-repeat center center fixed ;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    /* align-items: center; */
+    /* width: 100%; */
+}
+
+.poke{
+    /* background: url(./image/pokebola.png) */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokeImg{
+    width: 250px;
+    height: 250px;
+}
+.conteiner{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin: 0 auto;
+    height: 50%;
+}
+.titulo{
+    font-family: 'Baloo Bhaijaan 2', cursive;
+}
