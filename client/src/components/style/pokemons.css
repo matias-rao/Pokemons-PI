@@ -16,3 +16,10 @@
     width: 90%;
     margin: 0 auto;
 }
+.errorPokeSearch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 70px;
+}

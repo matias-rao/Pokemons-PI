@@ -4,7 +4,8 @@ import { ASCENDENTE, DEBIL } from "../../constantes/sort";
 const initialState = {
   pokemons: [],
   filteredPokemons: [],
-  types: []
+  types: [],
+  error: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -16,10 +17,20 @@ export default function reducer(state = initialState, action) {
         filteredPokemons: action.payload.data,
       };
     case SEARCH_POKEMONS:
-      return {
-        ...state,
-        filteredPokemons: [action.payload],
-      };
+      if (action.payload === 'Pokemon no encontrado') {
+        return {
+          ...state,
+          filteredPokemons: [action.payload],
+          error: true
+        };
+      } else {
+        return {
+          ...state,
+          filteredPokemons: [action.payload],
+          error: false
+        };
+      }
+
     case SORT:
       let orderedPokemons = [...state.filteredPokemons];
 
@@ -64,7 +75,7 @@ export default function reducer(state = initialState, action) {
     case FILTER_TYPES:
       let filteredTypes = [...state.pokemons]
 
-     
+
       filteredTypes = filteredTypes.filter((t) => t.types.find((elem) => elem === action.payload + " "))
 
       return {
@@ -76,12 +87,12 @@ export default function reducer(state = initialState, action) {
       let allPokemons = state.pokemons
       let createdPokemons = action.payload === 'PokemonsCreados' ? allPokemons.filter(p => p.createdInDB) : allPokemons.filter(p => !p.createdInDB)
 
-      return{
-        ...state, 
+      return {
+        ...state,
         filteredPokemons: action.payload === 'Pokemons' ? state.pokemons : createdPokemons
       }
     case POST_POKEMON:
-      return{
+      return {
         ...state
       }
     default:

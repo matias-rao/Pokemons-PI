@@ -8,11 +8,13 @@ import Paginado from "./paginado";
 import SearchBar from './searchBar'
 import FilterTypes from "./filterTypes"
 import Order from "./order";
+import PikaTriste from './style/image/pikaTriste.png'
 
 
 export default function Pokemons() {
   let pokemons = useSelector((state) => state.filteredPokemons);
   let dispatch = useDispatch();
+  const err = useSelector(state => state.error);
 
   //PAGINADO
   const [paginaActual, setPaginaActual] = useState(1)
@@ -26,10 +28,12 @@ export default function Pokemons() {
   }
 
   useEffect(() => {
-    dispatch(fetchPokemons());
-    // setPaginaActual(1)
+    if (!err) {
+      dispatch(fetchPokemons());
+      setPaginaActual(1);
+    }
   }, []);
-  // console.log(pokemons)
+  // console.log(pokemons[0])
   return (
     <div className='asd'>
       <div className='search'>
@@ -37,18 +41,28 @@ export default function Pokemons() {
         <Order />
         <SearchBar />
       </div>
-      <div className='paginado'>
-        <Paginado
-          pokemonsPorPagina={pokemonsPorPagina}
-          pokemons={pokemons.length}
-          paginado={paginado}
-        />
-      </div>
-      <div className='conteinerPokemonitos'>
-      {pokemonsActuales && pokemonsActuales.map((pokemon) => {
-        return <Pokemon name={pokemon.name} image={pokemon.img} id={pokemon.id} attack={pokemon.attack} types={pokemon.types} />;
-      })}
-      </div>
+      {!err ?
+        <>
+          <div className='paginado'>
+            <Paginado
+              pokemonsPorPagina={pokemonsPorPagina}
+              pokemons={pokemons.length}
+              paginado={paginado}
+            />
+          </div>
+          <div className='conteinerPokemonitos'>
+            {pokemonsActuales && pokemonsActuales.map((pokemon) => {
+              return <Pokemon name={pokemon.name} image={pokemon.img} id={pokemon.id} attack={pokemon.attack} types={pokemon.types} />;
+            })}
+          </div>
+        </> :
+        <>
+          <div className="errorPokeSearch">
+            <h3>Pokemonito no encontrado</h3>
+            <img src={PikaTriste} alt='pika Triste'/>
+          </div>
+        </>
+      }
     </div>
   );
 }

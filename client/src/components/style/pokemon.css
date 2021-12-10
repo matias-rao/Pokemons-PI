@@ -19,4 +19,6 @@
 
 .pokeAttack{
     display: none;
+    /* overflow: hidden; */
+   
 }
