@@ -1,13 +1,14 @@
-
-
 .card{
-    border: grey solid 1px;
-    width: 300px;
+    /* border: grey solid 1px; */
+    /* width: 30%; */
+    /* max-width: 350px;
+    min-width: 300px; */
     margin: 25px;
     border-radius: 7px;
     height: 350px;
     display: flex;
     justify-content: center;
+    background-color: rgba(253, 223, 170, 0.55);
 }
 
 .imgPoke{

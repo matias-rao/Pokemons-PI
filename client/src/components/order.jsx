@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { sort, sort_attack } from "../store/actions";
-import { DESCENDENTE, ASCENDENTE, FUERTE, DEBIL } from "../constantes/sort";
+import { sort, sort_attack, sort_speed } from "../store/actions";
+import { DESCENDENTE, ASCENDENTE, FUERTE, DEBIL, VELOZ, NOVELOZ } from "../constantes/sort";
 import axios from "axios";
 
 export default function Order() {
@@ -12,6 +12,10 @@ export default function Order() {
   }
   function onChangeAttack(e) {
     dispatch(sort_attack(e.target.value));
+    // dispatch(sort_attack(e.target.value));
+  }
+  function onChangeSpeed(e) {
+    dispatch(sort_speed(e.target.value));
     // dispatch(sort_attack(e.target.value));
   }
 
@@ -31,6 +35,13 @@ export default function Order() {
         <option value={FUERTE}>Mayor fuerza</option>
         <option value={DEBIL}>Menor fuerza</option>
       </select>
+      <select name="selectSpeed" onChange={onChangeSpeed}>
+        <option value='Orden Velocidad'
+          label={'Orden Velocidad'} />
+        <option value={VELOZ}>Mayor Velocidad</option>
+        <option value={NOVELOZ}>Menor Velocidad</option>
+      </select>
+      
 
     </div>
   );

@@ -1,5 +1,5 @@
-import { FETCH_POKEMONS, FETCH_TYPES, SEARCH_POKEMONS, SORT, SORT_ATTACK, FILTER_TYPES, FILTER_CREATED, POST_POKEMON } from "../actions";
-import { ASCENDENTE, DEBIL } from "../../constantes/sort";
+import { FETCH_POKEMONS, FETCH_TYPES, SEARCH_POKEMONS, SORT, SORT_ATTACK, FILTER_TYPES, FILTER_CREATED, POST_POKEMON, SORT_SPEED } from "../actions";
+import { ASCENDENTE, DEBIL, VELOZ } from "../../constantes/sort";
 
 const initialState = {
   pokemons: [],
@@ -65,7 +65,22 @@ export default function reducer(state = initialState, action) {
         ...state,
         filteredPokemons: orderedPokemonsAttack,
       };
+    case SORT_SPEED:
+      let orderedPokemonsSpeed = [...state.filteredPokemons];
+      orderedPokemonsSpeed = orderedPokemonsSpeed.sort((a, b) => {
+        if (a.speed < b.speed) {
+          return action.payload === VELOZ ? -1 : 1;
+        }
+        if (a.speed > b.speed) {
+          return action.payload === VELOZ ? 1 : -1;
+        }
 
+      })
+      return {
+        ...state,
+        filteredPokemons: orderedPokemonsSpeed,
+      }
+        
     case FETCH_TYPES:
       return {
         ...state,

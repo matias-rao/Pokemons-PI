@@ -9,6 +9,7 @@ import SearchBar from './searchBar'
 import FilterTypes from "./filterTypes"
 import Order from "./order";
 import PikaTriste from './style/image/pikaTriste.png'
+import NavBar from "./navBar";
 
 
 export default function Pokemons() {
@@ -18,7 +19,7 @@ export default function Pokemons() {
 
   //PAGINADO
   const [paginaActual, setPaginaActual] = useState(1)
-  const [pokemonsPorPagina, setPokemonsPorPagina] = useState(12)
+  const [pokemonsPorPagina, setPokemonsPorPagina] = useState(8)
   const indexLastPokemon = paginaActual * pokemonsPorPagina // 12 por pagina
   const indexFirstPokemon = indexLastPokemon - pokemonsPorPagina
   const pokemonsActuales = pokemons.slice(indexFirstPokemon, indexLastPokemon)
@@ -36,6 +37,7 @@ export default function Pokemons() {
   // console.log(pokemons[0])
   return (
     <div className='asd'>
+      <NavBar/>
       <div className='search'>
         <FilterTypes />
         <Order />
@@ -43,17 +45,17 @@ export default function Pokemons() {
       </div>
       {!err ?
         <>
+          <div className='conteinerPokemonitos'>
+            {pokemonsActuales && pokemonsActuales.map((pokemon) => {
+              return <Pokemon name={pokemon.name} image={pokemon.img} id={pokemon.id} attack={pokemon.attack} types={pokemon.types} />;
+            })}
+          </div>
           <div className='paginado'>
             <Paginado
               pokemonsPorPagina={pokemonsPorPagina}
               pokemons={pokemons.length}
               paginado={paginado}
             />
-          </div>
-          <div className='conteinerPokemonitos'>
-            {pokemonsActuales && pokemonsActuales.map((pokemon) => {
-              return <Pokemon name={pokemon.name} image={pokemon.img} id={pokemon.id} attack={pokemon.attack} types={pokemon.types} />;
-            })}
           </div>
         </> :
         <>

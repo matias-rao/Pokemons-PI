@@ -1,7 +1,7 @@
 .landing{
     height: 100vh;
     background-image: url('https://images3.alphacoders.com/273/thumb-1920-273289.jpg');
-    background: url(./image/fondoL.jpg) no-repeat center center fixed ;
+    background: url(./image/fondoPiola.jpg) no-repeat center center fixed ;
     background-size: 100% 100%;
     display: flex;
     justify-content: space-between;

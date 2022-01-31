@@ -7,6 +7,7 @@ export const FILTER_TYPES = 'FILTER_TYPES'
 export const FETCH_TYPES = 'FETCH_TYPES'
 export const FILTER_CREATED = 'FILTER_CREATED'
 export const POST_POKEMON = 'POST_POKEMON'
+export const SORT_SPEED = 'SORT_SPEED'
 
 const axios = require("axios");
 
@@ -94,5 +95,13 @@ export function postPokemon(payload){
             })
         })
         return response
+    }
+}
+
+
+export function sort_speed(payload){
+    return {
+        type: SORT_SPEED,
+        payload: payload
     }
 }

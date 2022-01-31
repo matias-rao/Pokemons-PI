@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
     
-      <NavBar/>
       
+      {/* <NavBar/> */}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/Home" element={<Pokemons /> } />

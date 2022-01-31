@@ -1,5 +1,6 @@
 .nav{
-    background-color: rgb(255,158,1);  
+   /* position: fixed; */
+    top: 0;  
 }
 
 .nav h1{

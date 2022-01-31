@@ -1,25 +1,33 @@
-.search{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 80%;
-    margin: 0 auto;
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.conteinerPokemonitos{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    width: 90%;
-    margin: 0 auto;
+.conteinerPokemonitos {
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* width: 90%; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 350px);
+  grid-gap: 10px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
-.errorPokeSearch{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 70px;
+.errorPokeSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 70px;
+}
+
+.asd {
+  width: 80%;
+  margin: 0 auto;
 }

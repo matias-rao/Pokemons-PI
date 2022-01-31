@@ -1,0 +1,36 @@
+.conteinerForm{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(253, 223, 170, 0.55);
+    border-radius: 7px;
+}
+
+.conteinerCreate{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    height: 70vh;
+}
+
+.formCreate{
+    height: 300px;
+    width: 500px;
+}
+
+.formCreate div{
+    margin: 10px;
+    /* float: left; */
+}
+.typesPoke{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0px 7px;
+}
