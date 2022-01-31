@@ -86,6 +86,7 @@ router.get("/", async (req, res, next) => {
               name: pokemonData.data.name,
               img: pokemonData.data.sprites.other.dream_world.front_default,
               attack: pokemonData.data.stats[1].base_stat,
+              speed: pokemonData.data.stats[5].base_stat,
               types: pokemonData.data.types.map((t) => {
                 return t.type.name + " ";
               }),
